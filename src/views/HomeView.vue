@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="overflow-hidden">
     <div class="invite-user">
       <div class="invite-user__title">Invite User</div>
 
@@ -28,7 +28,7 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <v-btn color="primary" @click="stepper(2)">Next Step</v-btn>
+            <MainInfo :mainInfo="inviteUser.mainInfo" @stepper="stepper" @change="mainInfoChange" />
           </v-stepper-content>
 
           <v-stepper-content step="2">
@@ -49,12 +49,33 @@
 </template>
 
 <script>
+import MainInfo from '../components/MainInfo.vue'
+
 export default {
   name: 'Home',
+  components: {
+    MainInfo
+  },
   data() {
     return {
       step: 1,
-      stepTitles: ['Main Info', 'Available Locations', 'Available Documents Custom Fields', 'Roles']
+      stepTitles: [
+        'Main Info',
+        'Available Locations',
+        'Available Documents Custom Fields',
+        'Roles'
+      ],
+      inviteUser: {
+        mainInfo: {
+          firstName: '',
+          lastName: '',
+          emailAddress: '',
+          phoneNumber: '',
+          position: '',
+          availableCompanies: [],
+          activeInAllCompanies: true
+        }
+      }
     }
   },
   mounted() {
@@ -74,122 +95,10 @@ export default {
       this.step = step
 
       this.indicator(step)
+    },
+    mainInfoChange(mainInfo) {
+      this.inviteUser.mainInfo = mainInfo
     }
   }
 }
 </script>
-
-<style lang="scss">
-.v-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 867px;
-  width: 100%;
-  box-shadow: 0 0.5rem 1rem rgba(54, 62, 113, 0.24) !important;
-  border-radius: 1rem !important;
-}
-
-.invite-user {
-  position: relative;
-
-  &__title {
-    padding: 1.5rem 0 0 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 2rem;
-    letter-spacing: 0;
-  }
-
-  &__close {
-    position: absolute;
-    top: 1.4375rem;
-    right: 1.6875rem;
-    width: 1.625rem;
-    height: 1.625rem;
-  }
-
-  &__indicator {
-    position: relative;
-    height: 2px;
-    background-color: #415ada;
-    left: 1.5rem;
-
-    margin-top: -2px;
-
-    transition: all 0.3s ease-in-out;
-  }
-
-  &__step {
-    margin-right: 1.5rem;
-  }
-  &__step:last-child {
-    margin-right: 0;
-  }
-}
-
-.v-stepper {
-  &__header {
-    height: auto !important;
-    justify-content: left !important;
-    padding: 0.875rem 1.5rem 1rem 1.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: none !important;
-  }
-
-  &__step {
-    padding: 0 !important;
-
-    &__step {
-      height: 1.875rem;
-      min-width: 1.875rem;
-      width: 1.875rem;
-
-      font-size: 0.875rem;
-      font-weight: 600;
-      line-height: 1.0625rem;
-      letter-spacing: 0;
-
-      margin-right: 0.5rem !important;
-
-      color: #5e6a75 !important;
-      background-color: rgba(94, 106, 117, 0.05) !important;
-    }
-    &__step .v-icon__component {
-      height: 0.75rem !important;
-      width: 0.75rem !important;
-      color: #fff;
-    }
-  }
-
-  &__label {
-    display: block !important;
-
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4375rem;
-    letter-spacing: 0;
-
-    color: rgba(29, 36, 82, 0.5) !important;
-  }
-
-  &__step:hover > &__label,
-  &__step:hover > &__step__step {
-    cursor: pointer;
-  }
-  &__step--complete > &__step__step {
-    background-color: #415ada !important;
-  }
-  &__step:hover > &__label,
-  &__step:hover > &__step__step,
-  &__step--active > &__label,
-  &__step--active > &__step__step {
-    text-shadow: none !important;
-    color: #415ada !important;
-  }
-}
-.v-btn {
-  text-transform: none !important;
-}
-</style>

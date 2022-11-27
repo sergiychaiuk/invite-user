@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.v-application {
+  font-family: 'Inter', sans-serif !important;
+  font-style: normal;
+}
+
+.v-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 867px !important;
+  width: 100%;
+  box-shadow: 0 0.5rem 1rem rgba(54, 62, 113, 0.24) !important;
+  border-radius: 1rem !important;
+}
+
+.invite-user {
+  position: relative;
+
+  &__title {
+    padding: 1.5rem 0 0 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+    letter-spacing: 0;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1.4375rem;
+    right: 1.6875rem;
+    width: 1.625rem;
+    height: 1.625rem;
+  }
+  &__info {
+    display: block;
+    opacity: 0.5;
+  }
+
+  &__indicator {
+    position: relative;
+    height: 2px;
+    background-color: #415ada;
+    left: 1.5rem;
+
+    margin-top: -2px;
+
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__step {
+    margin-right: 1.5rem;
+  }
+  &__step:last-child {
+    margin-right: 0;
+  }
+
+  &__label {
+    margin-bottom: 0.25rem;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 0.9375rem;
+    letter-spacing: 0;
+
+    color: rgba(29, 36, 82, 0.5);
+  }
+
+  &__chip {
+    padding: 0.5rem !important;
+    background: #f4f4ff !important;
+    border-radius: 0.3125rem !important;
+  }
+  &__chip-text {
+    padding-right: 0.5rem;
+
+    max-width: 7.6875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0;
+
+    color: #1d2452;
+  }
+  &__chip-icon {
+    color: #1d2452;
+    opacity: 0.25;
+  }
+
+  &__action {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &__button {
+    padding: 10px 16px;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0;
+    text-align: center;
+
+    color: #ffffff;
+
+    background: #1d2452;
+    border-radius: 20px;
+  }
+}
+
+.v-stepper {
+  &__header {
+    height: auto !important;
+    justify-content: left !important;
+    padding: 0.875rem 1.5rem 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: none !important;
+  }
+
+  &__content {
+    padding: 1.25rem 0 1.125rem 0 !important;
+  }
+
+  &__step {
+    padding: 0 !important;
+
+    &__step {
+      height: 1.875rem;
+      min-width: 1.875rem;
+      width: 1.875rem;
+
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.0625rem;
+      letter-spacing: 0;
+
+      margin-right: 0.5rem !important;
+
+      color: #5e6a75 !important;
+      background-color: rgba(94, 106, 117, 0.05) !important;
+    }
+    &__step .v-icon__component {
+      height: 0.75rem !important;
+      width: 0.75rem !important;
+      color: #fff;
+    }
+  }
+
+  &__label {
+    display: block !important;
+
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4375rem;
+    letter-spacing: 0;
+
+    color: rgba(29, 36, 82, 0.5) !important;
+  }
+
+  &__step:hover > &__label,
+  &__step:hover > &__step__step {
+    cursor: pointer;
+  }
+  &__step--complete > &__step__step {
+    background-color: #415ada !important;
+  }
+  &__step:hover > &__label,
+  &__step:hover > &__step__step,
+  &__step--active > &__label,
+  &__step--active > &__step__step {
+    text-shadow: none !important;
+    color: #415ada !important;
+  }
+}
+.v-btn {
+  text-transform: none !important;
+}
+.v-input {
+  &__slot {
+    max-width: 345px;
+    padding: 0 0.5rem !important;
+
+    fieldset {
+      transition: all 0.3s ease-in-out;
+      border: 1px solid rgba(29, 36, 82, 0.1) !important;
+      border-radius: 0.5rem !important;
+    }
+  }
+  &--is-focused {
+    fieldset {
+      border: 2px solid #415ada !important;
+    }
+  }
+  &--switch {
+    &__track {
+      opacity: 1 !important;
+    }
+
+    &__thumb {
+      color: white !important;
+    }
+  }
+  &--selection-controls {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+
+    &__input {
+      margin-right: 0 !important;
+    }
+
+    .v-input__slot > .v-label {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4375rem;
+      letter-spacing: 0;
+
+      color: #1d2452;
+    }
+  }
+}
+.v-text-field {
+  min-width: 345px;
+  width: 100%;
+
+  &__slot input {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4375rem;
+    letter-spacing: 0;
+
+    color: #1d2452 !important;
+  }
+}
+.v-chip {
+  margin: 0 0.625rem 0 0 !important;
+}
+.v-icon {
+  &__component {
+    color: #1d2452;
+    height: 1rem !important;
+    width: auto !important;
+  }
+}

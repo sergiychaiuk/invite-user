@@ -11,6 +11,14 @@ Vue.use(Vuetify)
 
 export default new Vuetify({
   icons: {
-    iconfont: 'faSvg'
+    iconfont: 'faSvg',
+    values: {
+      xmark: {
+        component: FontAwesomeIcon,
+        props: {
+          icon: ['fas', 'xmark']
+        }
+      }
+    }
   }
 })
