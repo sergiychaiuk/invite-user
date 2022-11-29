@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex pb-5 px-6">
-      <div class="pr-5">
+      <div class="invite-user__input pr-5">
         <div class="invite-user__label">First Name</div>
         <v-text-field
           v-model="mi.firstName"
@@ -15,7 +15,7 @@
         </v-text-field>
       </div>
 
-      <div>
+      <div class="invite-user__input">
         <div class="invite-user__label">Last Name</div>
         <v-text-field
           v-model="mi.lastName"
@@ -31,7 +31,7 @@
     </div>
 
     <div class="d-flex pb-5 px-6">
-      <div class="pr-5">
+      <div class="invite-user__input pr-5">
         <div class="invite-user__label">Email Address</div>
         <v-text-field
           v-model="mi.emailAddress"
@@ -45,7 +45,7 @@
         </v-text-field>
       </div>
 
-      <div>
+      <div class="invite-user__input">
         <div class="invite-user__label">Phone Number</div>
         <v-text-field
           v-model="mi.phoneNumber"
@@ -61,7 +61,7 @@
     </div>
 
     <div class="d-flex px-6" style="margin-bottom: 1.875rem">
-      <div class="pr-5">
+      <div class="invite-user__input pr-5">
         <div class="invite-user__label">Position</div>
         <v-text-field
           v-model="mi.position"
@@ -75,7 +75,7 @@
         </v-text-field>
       </div>
 
-      <div>
+      <div class="invite-user__input">
         <div class="invite-user__label">Available Companies</div>
         <v-select
           v-model="mi.availableCompanies"
@@ -112,8 +112,8 @@
     </div>
 
     <div class="d-flex justify-space-between px-6 invite-user__action">
-      <div class="d-flex align-center" style="margin: 30px 0 0 -3px">
-        <div>
+      <div class="d-flex align-center" style="margin: 30px 0 0 3px">
+        <div class="invite-user__switch pr-2">
           <v-switch
             v-model="mi.activeInAllCompanies"
             inset

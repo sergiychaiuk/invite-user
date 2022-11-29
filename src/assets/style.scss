@@ -26,6 +26,18 @@
     line-height: 2rem;
     letter-spacing: 0;
   }
+  &__subtitle {
+    margin-bottom: 0.625rem;
+
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4375rem;
+    letter-spacing: 0;
+
+    color: #1D2452;
+
+    opacity: 0.6;
+  }
 
   &__close {
     position: absolute;
@@ -39,6 +51,13 @@
     opacity: 0.5;
   }
 
+  &__step {
+    margin-right: 1.5rem;
+  }
+  &__step:last-child {
+    margin-right: 0;
+  }
+
   &__indicator {
     position: relative;
     height: 2px;
@@ -50,13 +69,6 @@
     transition: all 0.3s ease-in-out;
   }
 
-  &__step {
-    margin-right: 1.5rem;
-  }
-  &__step:last-child {
-    margin-right: 0;
-  }
-
   &__label {
     margin-bottom: 0.25rem;
 
@@ -66,6 +78,53 @@
     letter-spacing: 0;
 
     color: rgba(29, 36, 82, 0.5);
+  }
+
+  &__input {
+    max-width: 345px;
+    width: 100%;
+
+    .v-input {
+      &__slot {
+        padding: 0 0.5rem !important;
+
+        fieldset {
+          transition: all 0.3s ease-in-out;
+          border: 1px solid rgba(29, 36, 82, 0.1) !important;
+          border-radius: 0.5rem !important;
+        }
+      }
+      &--is-focused {
+        fieldset {
+          border: 2px solid #415ada !important;
+        }
+      }
+    }
+
+    .v-icon {
+      &__component {
+        color: #1d2452;
+        height: 1rem !important;
+        width: auto !important;
+      }
+    }
+
+    .v-chip {
+      margin: 0 0.625rem 0 0 !important;
+    }
+
+    .v-text-field {
+      width: 100%;
+
+      &__slot input {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.4375rem !important;
+        letter-spacing: 0;
+
+        color: #1d2452 !important;
+      }
+    }
   }
 
   &__chip {
@@ -90,10 +149,45 @@
   &__chip-icon {
     color: #1d2452;
     opacity: 0.25;
+    .v-icon__component {
+      height: 0.875rem !important;
+    }
   }
 
   &__action {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &__switch {
+    .v-input {
+      &--switch {
+        &__track {
+          opacity: 1 !important;
+        }
+
+        &__thumb {
+          color: white !important;
+        }
+      }
+
+      &--selection-controls {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+
+        &__input {
+          margin-right: 0 !important;
+        }
+
+        .v-input__slot > .v-label {
+          font-size: 1rem;
+          font-weight: 500;
+          line-height: 1.4375rem;
+          letter-spacing: 0;
+
+          color: #1d2452;
+        }
+      }
+    }
   }
 
   &__button {
@@ -110,63 +204,67 @@
     background: #1d2452;
     border-radius: 20px;
   }
-}
 
-.v-stepper {
-  &__header {
-    height: auto !important;
-    justify-content: left !important;
-    padding: 0.875rem 1.5rem 1rem 1.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: none !important;
-  }
-
-  &__content {
-    padding: 1.25rem 0 1.125rem 0 !important;
-  }
-
-  &__step {
-    padding: 0 !important;
+  .v-stepper {
+    &__header {
+      height: auto !important;
+      justify-content: left !important;
+      padding: 0.875rem 1.5rem 1rem 1.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: none !important;
+    }
 
     &__step {
-      height: 1.875rem;
-      min-width: 1.875rem;
-      width: 1.875rem;
+      padding: 0 !important;
 
-      font-size: 0.875rem;
-      font-weight: 600;
-      line-height: 1.0625rem;
+      &__step {
+        height: 1.875rem;
+        width: 1.875rem;
+
+        font-size: 0.875rem;
+        font-weight: 600;
+        line-height: 1.0625rem;
+        letter-spacing: 0;
+
+        margin-right: 0.5rem !important;
+
+        color: #5e6a75 !important;
+        background-color: rgba(94, 106, 117, 0.05) !important;
+
+        .v-icon__component {
+          height: 0.75rem !important;
+          width: 0.75rem !important;
+          color: #fff;
+        }
+      }
+    }
+
+    &__label {
+      display: block !important;
+
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4375rem;
       letter-spacing: 0;
 
-      margin-right: 0.5rem !important;
-
-      color: #5e6a75 !important;
-      background-color: rgba(94, 106, 117, 0.05) !important;
+      color: rgba(29, 36, 82, 0.5) !important;
     }
-    &__step .v-icon__component {
-      height: 0.75rem !important;
-      width: 0.75rem !important;
-      color: #fff;
+
+    &__step--complete {
+      .v-stepper__step__step {
+        background-color: #415ada !important;
+      }
+    }
+
+    &__content {
+      padding: 1.25rem 0 1.125rem 0 !important;
     }
   }
-
-  &__label {
-    display: block !important;
-
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4375rem;
-    letter-spacing: 0;
-
-    color: rgba(29, 36, 82, 0.5) !important;
-  }
-
+}
+.v-stepper {
   &__step:hover > &__label,
   &__step:hover > &__step__step {
     cursor: pointer;
-  }
-  &__step--complete > &__step__step {
-    background-color: #415ada !important;
   }
   &__step:hover > &__label,
   &__step:hover > &__step__step,
@@ -176,72 +274,126 @@
     color: #415ada !important;
   }
 }
-.v-btn {
-  text-transform: none !important;
+
+/*-----------------------------------------*/
+
+.v-expansion-panel::before {
+  box-shadow: none !important;
 }
+.v-expansion-panel-header {
+  min-height: auto !important;
+}
+.v-expansion-panel-content {
+  &__wrap {
+    padding: 0 0 1.875rem 0 !important;
+  }
+}
+
 .v-input {
-  &__slot {
-    max-width: 345px;
-    padding: 0 0.5rem !important;
-
-    fieldset {
-      transition: all 0.3s ease-in-out;
-      border: 1px solid rgba(29, 36, 82, 0.1) !important;
-      border-radius: 0.5rem !important;
-    }
-  }
-  &--is-focused {
-    fieldset {
-      border: 2px solid #415ada !important;
-    }
-  }
-  &--switch {
-    &__track {
-      opacity: 1 !important;
-    }
-
-    &__thumb {
-      color: white !important;
-    }
-  }
   &--selection-controls {
-    padding-top: 0 !important;
     margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
 
-    &__input {
-      margin-right: 0 !important;
-    }
-
-    .v-input__slot > .v-label {
-      font-size: 1rem;
-      font-weight: 500;
-      line-height: 1.4375rem;
-      letter-spacing: 0;
-
-      color: #1d2452;
-    }
+  &__slot {
+    margin-bottom: 0 !important;
   }
 }
-.v-text-field {
-  min-width: 345px;
-  width: 100%;
 
-  &__slot input {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4375rem;
+.accordion {
+  margin-top: -0.4375rem;
+
+  &__header {
+    padding: 0.6875rem 0 0.9375rem 0 !important;
+  }
+  &__header-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.625rem;
     letter-spacing: 0;
 
-    color: #1d2452 !important;
+    color: #1D2452;
   }
-}
-.v-chip {
-  margin: 0 0.625rem 0 0 !important;
-}
-.v-icon {
-  &__component {
-    color: #1d2452;
+  &__header-select {
+    margin-right: 1.375rem;
+
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.1875rem;
+    letter-spacing: 0;
+
+    color: #1D2452;
+    opacity: 0.4;
+  }
+  &__header-icon > .v-icon__component {
+    color: #C6C8D4 !important;
     height: 1rem !important;
     width: auto !important;
+  }
+
+  &__content {
+    margin-top: 0.0625rem;
+  }
+  &__input {
+    .v-select {
+      &__selection--comma {
+        margin: 0.25rem 0 !important;
+
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.4375rem;
+        letter-spacing: 0;
+
+        color: #1D2452;
+      }
+    }
+  }
+
+  &__checkbox {
+    .v-input {
+      &--selection-controls {
+        &__input {
+          margin-right: 0.5rem;
+
+          height: 1.125rem !important;
+          width: 1.125rem !important;
+        }
+
+        &__ripple {
+          display: none !important;
+        }
+      }
+
+      &__slot > .v-label {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.1875rem;
+        letter-spacing: 0;
+
+        color: #1D2452;
+      }
+    }
+    .v-icon__component {
+      height: 1.125rem !important;
+      width: 1.125rem !important;
+      opacity: 0.1;
+    }
+  }
+  .v-input--is-dirty  .v-icon__component {
+    color: #415ada;
+    opacity: 1 !important;
+  }
+}
+
+.available-locations {
+  max-height: 125px;
+
+  &__checkbox {
+    margin-bottom: 1rem;
+  }
+
+  &__checkbox:nth-child(4n),
+  &__checkbox:last-child,{
+    margin-bottom: 0;
   }
 }

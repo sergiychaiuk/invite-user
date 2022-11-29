@@ -32,7 +32,11 @@
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            <v-btn color="primary" @click="stepper(3)">Next Step</v-btn>
+            <AvailableLocations
+              :availableLocations="inviteUser.availableLocations"
+              @stepper="stepper"
+              @change="availableLocationsChange"
+            />
           </v-stepper-content>
 
           <v-stepper-content step="3">
@@ -50,11 +54,13 @@
 
 <script>
 import MainInfo from '../components/MainInfo.vue'
+import AvailableLocations from '../components/AvailableLocations.vue'
 
 export default {
   name: 'Home',
   components: {
-    MainInfo
+    MainInfo,
+    AvailableLocations
   },
   data() {
     return {
@@ -74,6 +80,10 @@ export default {
           position: '',
           availableCompanies: [],
           activeInAllCompanies: true
+        },
+        availableLocations: {
+          mainLocation: '',
+          availableLocations: []
         }
       }
     }
@@ -98,6 +108,9 @@ export default {
     },
     mainInfoChange(mainInfo) {
       this.inviteUser.mainInfo = mainInfo
+    },
+    availableLocationsChange(availableLocations) {
+      this.inviteUser.availableLocations = availableLocations
     }
   }
 }
