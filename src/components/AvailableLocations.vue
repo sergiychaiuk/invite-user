@@ -1,18 +1,8 @@
 <template>
   <div>
-    <v-expansion-panels class="accordion px-6" accordion>
-      <v-expansion-panel class="accordion__item">
-        <v-expansion-panel-header class="accordion__header">
-          <div class="d-flex justify-space-between align-center">
-            <div class="accordion__header-title">Precoro</div>
-            <div class="accordion__header-select">{{ precoroSelected }} selected</div>
-          </div>
-
-          <template v-slot:actions>
-            <v-icon class="accordion__header-icon mr-3"> $angleUp </v-icon>
-          </template>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content class="available-locations accordion__content">
+    <Accordion :precoroSelected="precoroSelected">
+      <template #precoro>
+        <div class="available-locations">
           <div class="invite-user__input mb-5">
             <div class="invite-user__label">Main Location <span class="red--text">*</span></div>
             <v-select
@@ -62,37 +52,9 @@
               </div>
             </div>
           </div>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <v-expansion-panel class="accordion__item">
-        <v-expansion-panel-header class="accordion__header">
-          <div class="d-flex justify-space-between align-center">
-            <div class="accordion__header-title">Precoro Development</div>
-            <div class="accordion__header-select">5 selected</div>
-          </div>
-
-          <template v-slot:actions>
-            <v-icon class="accordion__header-icon mr-3"> $angleUp </v-icon>
-          </template>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content></v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <v-expansion-panel class="accordion__item">
-        <v-expansion-panel-header class="accordion__header">
-          <div class="d-flex justify-space-between align-center">
-            <div class="accordion__header-title">Procurement</div>
-            <div class="accordion__header-select">2 selected</div>
-          </div>
-
-          <template v-slot:actions>
-            <v-icon class="accordion__header-icon mr-3"> $angleUp </v-icon>
-          </template>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content></v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+        </div>
+      </template>
+    </Accordion>
 
     <div class="d-flex justify-end px-6 invite-user__action" style="margin-top: 25px">
       <div style="margin-top: 25px">
@@ -103,8 +65,14 @@
 </template>
 
 <script>
+import Accordion from '@/components/Accordion'
+
 export default {
   name: 'AvailableLocations',
+  components: {
+    Accordion
+  },
+
   props: ['availableLocations'],
   data() {
     return {
