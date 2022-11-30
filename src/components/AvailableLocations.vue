@@ -12,7 +12,7 @@
             <v-icon class="accordion__header-icon mr-3"> $angleUp </v-icon>
           </template>
         </v-expansion-panel-header>
-        <v-expansion-panel-content class="accordion__content">
+        <v-expansion-panel-content class="available-locations accordion__content">
           <div class="invite-user__input mb-5">
             <div class="invite-user__label">Main Location <span class="red--text">*</span></div>
             <v-select
@@ -31,30 +31,35 @@
             </v-select>
           </div>
 
-          <v-checkbox
-            v-model="selectAll"
-            class="accordion__checkbox mb-4"
-            label="Select All Locations"
-            hide-details
-            @change="allLocations"
-          ></v-checkbox>
+          <div class="d-flex">
+            <v-checkbox
+              v-model="selectAll"
+              class="checkbox mb-4"
+              label="Select All Locations"
+              hide-details
+              :indeterminate="indeterminateSelectAll"
+              @change="selectAllLocations"
+            ></v-checkbox>
+          </div>
 
-          <div class="invite-user__subtitle">Available Locations</div>
+          <div class="available-locations__title">Available Locations</div>
 
-          <div class="d-flex flex-column flex-wrap available-locations">
+          <div class="d-flex flex-column flex-wrap available-locations__items">
             <div
               v-for="(location, index) in locations"
               :key="index"
-              class="available-locations__checkbox"
+              class="available-locations__item"
             >
-              <v-checkbox
-                v-model="al.availableLocations"
-                class="accordion__checkbox"
-                :label="location"
-                :value="location"
-                hide-details
-                @change="changeCheckbox"
-              ></v-checkbox>
+              <div class="d-flex">
+                <v-checkbox
+                  v-model="al.availableLocations"
+                  class="checkbox"
+                  :label="location"
+                  :value="location"
+                  hide-details
+                  @change="changeCheckbox"
+                ></v-checkbox>
+              </div>
             </div>
           </div>
         </v-expansion-panel-content>
@@ -122,8 +127,12 @@ export default {
   },
   mounted() {
     this.al = this.availableLocations
+    this.selectAll = this.allLocations()
   },
   computed: {
+    indeterminateSelectAll() {
+      return this.al.availableLocations.length > 0 && !this.allLocations()
+    },
     precoroSelected() {
       return this.al.availableLocations.length || 'Not'
     }
@@ -133,14 +142,20 @@ export default {
       this.$emit('stepper', step)
     },
     allLocations() {
-      if (this.selectAll) {
-        this.al.availableLocations = this.locations
-        this.availableLocationsChange()
-      }
+      // return this.locations.every(el => this.al.availableLocations > 0 && this.al.availableLocations.find(e => e === el))
+      return this.locations.length === this.al.availableLocations.length
+    },
+    selectAllLocations() {
+      this.selectAll
+        ? (this.al.availableLocations = this.locations)
+        : (this.al.availableLocations = [])
+
+      this.availableLocationsChange()
     },
     changeCheckbox() {
-      this.selectAll = false
       this.availableLocationsChange()
+
+      this.selectAll = this.allLocations()
     },
     availableLocationsChange() {
       this.$emit('change', this.al)

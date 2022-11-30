@@ -38,6 +38,18 @@ export default new Vuetify({
           icon: ['fas', 'angle-up']
         }
       },
+      angleDown: {
+        component: FontAwesomeIcon,
+        props: {
+          icon: ['fas', 'angle-down']
+        }
+      },
+      checkboxIndeterminate: {
+        component: FontAwesomeIcon,
+        props: {
+          icon: ['fas', 'square-minus']
+        }
+      },
       checkboxOff: {
         component: FontAwesomeIcon,
         props: {

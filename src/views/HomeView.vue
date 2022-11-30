@@ -40,7 +40,11 @@
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            <v-btn color="primary" @click="stepper(4)">Next Step</v-btn>
+            <AvailableDocumentsCustomFields
+              :availableDocumentsCustomFields="inviteUser.availableDocumentsCustomFields"
+              @stepper="stepper"
+              @change="availableDocumentsCustomFieldsChange"
+            />
           </v-stepper-content>
 
           <v-stepper-content step="4">
@@ -55,12 +59,14 @@
 <script>
 import MainInfo from '../components/MainInfo.vue'
 import AvailableLocations from '../components/AvailableLocations.vue'
+import AvailableDocumentsCustomFields from '../components/AvailableDocumentsCustomFields.vue'
 
 export default {
   name: 'Home',
   components: {
     MainInfo,
-    AvailableLocations
+    AvailableLocations,
+    AvailableDocumentsCustomFields
   },
   data() {
     return {
@@ -84,6 +90,11 @@ export default {
         availableLocations: {
           mainLocation: '',
           availableLocations: []
+        },
+        availableDocumentsCustomFields: {
+          classes: [],
+          departments: [],
+          dcf3: []
         }
       }
     }
@@ -111,6 +122,9 @@ export default {
     },
     availableLocationsChange(availableLocations) {
       this.inviteUser.availableLocations = availableLocations
+    },
+    availableDocumentsCustomFieldsChange(availableDocumentsCustomFields) {
+      this.inviteUser.availableLocations = availableDocumentsCustomFields
     }
   }
 }
