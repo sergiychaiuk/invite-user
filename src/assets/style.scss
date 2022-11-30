@@ -1,5 +1,10 @@
+@import 'accordion';
+@import 'checkbox';
+@import 'treeview';
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+// simple change of styles of Vuetify components
 .v-application {
   font-family: 'Inter', sans-serif !important;
   font-style: normal;
@@ -16,8 +21,45 @@
   border-radius: 1rem !important;
 }
 
-/*-----------------------------------------*/
+.v-stepper {
+  &__step:hover > &__label,
+  &__step:hover > &__step__step {
+    cursor: pointer;
+  }
+  &__step:hover > &__label,
+  &__step:hover > &__step__step,
+  &__step--active > &__label,
+  &__step--active > &__step__step {
+    text-shadow: none !important;
+    color: #415ada !important;
+  }
+}
 
+.v-expansion-panel::before {
+  box-shadow: none !important;
+}
+.v-expansion-panel-header {
+  min-height: auto !important;
+}
+.v-expansion-panel-content {
+  &__wrap {
+    padding: 0 0 1.875rem 0 !important;
+  }
+}
+
+.v-input {
+  &--selection-controls {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  &__slot {
+    margin-bottom: 0 !important;
+  }
+}
+
+// styles for the main "Invite User" block with stepper and "Next Step" or "Invite User" button
+// input styles "Invite User" form
 .invite-user {
   position: relative;
 
@@ -263,250 +305,8 @@
     }
   }
 }
-.v-stepper {
-  &__step:hover > &__label,
-  &__step:hover > &__step__step {
-    cursor: pointer;
-  }
-  &__step:hover > &__label,
-  &__step:hover > &__step__step,
-  &__step--active > &__label,
-  &__step--active > &__step__step {
-    text-shadow: none !important;
-    color: #415ada !important;
-  }
-}
 
-/*-----------------------------------------*/
-
-.v-expansion-panel::before {
-  box-shadow: none !important;
-}
-.v-expansion-panel-header {
-  min-height: auto !important;
-}
-.v-expansion-panel-content {
-  &__wrap {
-    padding: 0 0 1.875rem 0 !important;
-  }
-}
-
-.v-input {
-  &--selection-controls {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-
-  &__slot {
-    margin-bottom: 0 !important;
-  }
-}
-
-.accordion {
-  margin-top: -0.4375rem;
-
-  &__header {
-    padding: 0.6875rem 0 0.9375rem 0 !important;
-  }
-  &__header-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.625rem;
-    letter-spacing: 0;
-
-    color: #1d2452;
-  }
-  &__header-select {
-    margin-right: 1.375rem;
-
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.1875rem;
-    letter-spacing: 0;
-
-    color: #1d2452;
-    opacity: 0.4;
-  }
-  &__header-icon > .v-icon__component {
-    color: #c6c8d4 !important;
-    height: 1rem !important;
-    width: auto !important;
-  }
-
-  &__content {
-    margin-top: 0.0625rem;
-  }
-  &__input {
-    .v-select {
-      &__selection--comma {
-        margin: 0.25rem 0 !important;
-
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 1.4375rem;
-        letter-spacing: 0;
-
-        color: #1d2452;
-      }
-    }
-  }
-}
-
-.checkbox {
-  .v-input {
-    &--selection-controls {
-      &__input {
-        margin-right: 0.5rem;
-
-        height: 1.125rem !important;
-        width: 1.125rem !important;
-      }
-
-      &__ripple {
-        display: none !important;
-      }
-    }
-
-    &__slot > .v-label {
-      font-size: 1rem;
-      font-weight: 500;
-      line-height: 1.1875rem;
-      letter-spacing: 0;
-
-      color: #1d2452;
-    }
-  }
-  .v-icon__component {
-    height: 1.125rem !important;
-    width: 1.125rem !important;
-    opacity: 0.1;
-  }
-  &.v-input--is-dirty .v-icon__component,
-  &.v-input--indeterminate .v-icon__component {
-    color: #415ada;
-    opacity: 1 !important;
-  }
-}
-
-.treeview {
-  >.v-treeview-node {
-    >.v-treeview-node__root {
-      &:after {
-        height: 0;
-      }
-
-      padding-bottom: 1.5625rem !important;
-
-      >.v-treeview-node__toggle {
-        display: none;
-      }
-    }
-
-    >.v-treeview-node__children {
-      margin-left: 0 !important;
-
-      >.v-treeview-node {
-        &:last-child {
-          >.v-treeview-node__root {
-            &:after {
-              height: 0;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-.treeview {
-  .v-treeview-node {
-    &__root {
-      position: relative;
-      padding: 0.5rem 0 !important;
-
-      min-height: auto !important;
-    }
-
-    &__root:after {
-      content: '';
-      position: absolute;
-      left: 25px;
-      bottom: 0;
-      height: 1px;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    &__level {
-      width: 0 !important;
-    }
-
-    &__children {
-      margin-left: 0.3125rem;
-    }
-
-    &__content {
-      margin-left: 0.5rem !important;
-    }
-    &__label {
-      font-size: 0.875rem;
-      font-weight: 500;
-      line-height: 1.0625rem;
-      letter-spacing: 0;
-
-      color: #1d2452;
-    }
-
-    &__toggle {
-      width: auto !important;
-
-      order: 3;
-
-      transform: none !important;
-
-      .v-icon__component {
-        height: 1rem !important;
-        width: auto !important;
-        color: #1d2452;
-      }
-    }
-    &__toggle--open {
-      transform: rotate(-180deg) !important;
-
-      .v-icon__component {
-        color: #415ada;
-      }
-    }
-    &__checkbox {
-      margin: 0 !important;
-
-      width: auto !important;
-
-      .v-icon__component {
-        height: 1.125rem !important;
-        width: 1.125rem !important;
-        color: rgba(65, 90, 218, 0.1);
-      }
-    }
-
-    &--selected .v-icon__component {
-      opacity: 1 !important;
-    }
-
-    .v-icon.v-icon::after {
-      display: none !important;
-    }
-  }
-
-  &.v-input--is-dirty .v-icon__component,
-  &.v-input--indeterminate .v-icon__component {
-    color: #415ada;
-    opacity: 1 !important;
-  }
-}
-
-/*-----------------------------------------*/
-
+// styles fot the "AvailableLocations" component
 .available-locations {
   &__title {
     margin-bottom: 0.625rem;
@@ -534,8 +334,7 @@
   }
 }
 
-/*-----------------------------------------*/
-
+// styles fot the "AvailableDocumentCustomFields" component
 .available-document-custom-fields {
   &__title {
     margin-bottom: 0.625rem;

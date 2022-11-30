@@ -1,0 +1,35 @@
+.checkbox {
+  .v-input {
+    &--selection-controls {
+      &__input {
+        margin-right: 0.5rem;
+
+        height: 1.125rem !important;
+        width: 1.125rem !important;
+      }
+
+      &__ripple {
+        display: none !important;
+      }
+    }
+
+    &__slot > .v-label {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.1875rem;
+      letter-spacing: 0;
+
+      color: #1d2452;
+    }
+  }
+  .v-icon__component {
+    height: 1.125rem !important;
+    width: 1.125rem !important;
+    opacity: 0.1;
+  }
+  &.v-input--is-dirty .v-icon__component,
+  &.v-input--indeterminate .v-icon__component {
+    color: #415ada;
+    opacity: 1 !important;
+  }
+}
