@@ -4,7 +4,7 @@
       <v-expansion-panel-header class="accordion__header">
         <div class="d-flex justify-space-between align-center">
           <div class="accordion__header-title">Precoro</div>
-          <div class="accordion__header-select">{{ precoroSelected }} selected</div>
+          <div class="accordion__header-select">{{ precoro }}</div>
         </div>
 
         <template v-slot:actions>
@@ -20,7 +20,7 @@
       <v-expansion-panel-header class="accordion__header">
         <div class="d-flex justify-space-between align-center">
           <div class="accordion__header-title">Precoro Development</div>
-          <div class="accordion__header-select">5 selected</div>
+          <div class="accordion__header-select">{{ precoroDevelopment }}</div>
         </div>
 
         <template v-slot:actions>
@@ -34,7 +34,7 @@
       <v-expansion-panel-header class="accordion__header">
         <div class="d-flex justify-space-between align-center">
           <div class="accordion__header-title">Procurement</div>
-          <div class="accordion__header-select">2 selected</div>
+          <div class="accordion__header-select">{{ procurement }}</div>
         </div>
 
         <template v-slot:actions>
@@ -49,6 +49,6 @@
 <script>
 export default {
   name: 'Accordion',
-  props: ['precoroSelected']
+  props: ['precoro', 'precoroDevelopment', 'procurement']
 }
 </script>

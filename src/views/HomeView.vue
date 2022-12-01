@@ -15,7 +15,7 @@
           >
             <v-stepper-step
               color="rgba(94, 106, 117, 0.05)"
-              :complete="step > index + 1"
+              :complete="step > index + 1 || disabled"
               :step="index + 1"
               @click="stepper(index + 1)"
             >
@@ -28,11 +28,17 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <MainInfo :mainInfo="inviteUser.mainInfo" @stepper="stepper" @change="mainInfoChange" />
+            <MainInfo
+              :disabled="disabled"
+              :mainInfo="inviteUser.mainInfo"
+              @stepper="stepper"
+              @change="mainInfoChange"
+            />
           </v-stepper-content>
 
           <v-stepper-content step="2">
             <AvailableLocations
+              :disabled="disabled"
               :availableLocations="inviteUser.availableLocations"
               @stepper="stepper"
               @change="availableLocationsChange"
@@ -41,6 +47,7 @@
 
           <v-stepper-content step="3">
             <AvailableDocumentsCustomFields
+              :disabled="disabled"
               :availableDocumentsCustomFields="inviteUser.availableDocumentsCustomFields"
               @stepper="stepper"
               @change="availableDocumentsCustomFieldsChange"
@@ -48,7 +55,19 @@
           </v-stepper-content>
 
           <v-stepper-content step="4">
-            <v-btn color="primary" @click="stepper()">Invite User</v-btn>
+            <Roles
+              :disabled="disabled"
+              :roles="inviteUser.roles"
+              @stepper="stepper"
+              @change="rolesChange"
+            />
+          </v-stepper-content>
+
+          <v-stepper-content step="Invite User">
+            <div class="pa-5">
+              User data is stored in the "inviteUser" object, all input fields "disabled". You can
+              switch between steps to view the input data!
+            </div>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
@@ -60,16 +79,19 @@
 import MainInfo from '../components/MainInfo.vue'
 import AvailableLocations from '../components/AvailableLocations.vue'
 import AvailableDocumentsCustomFields from '../components/AvailableDocumentsCustomFields.vue'
+import Roles from '../components/Roles.vue'
 
 export default {
   name: 'Home',
   components: {
     MainInfo,
     AvailableLocations,
-    AvailableDocumentsCustomFields
+    AvailableDocumentsCustomFields,
+    Roles
   },
   data() {
     return {
+      disabled: false,
       step: 1,
       stepTitles: [
         'Main Info',
@@ -95,6 +117,15 @@ export default {
           classes: [],
           departments: [],
           dcf3: []
+        },
+        roles: {
+          accessTo: {
+            viewOnly: [],
+            create: [],
+            approve: [],
+            pay: []
+          },
+          management: []
         }
       }
     }
@@ -104,6 +135,13 @@ export default {
   },
   methods: {
     indicator(step) {
+      if (this.step === 'Invite User') {
+        this.$refs.indicator.style.display = 'none'
+        return
+      } else {
+        this.$refs.indicator.style.display = 'block'
+      }
+
       let left = 0
       for (let i = 0; i < step - 1; i++) {
         left += this.$refs.titles[i].offsetWidth
@@ -115,6 +153,10 @@ export default {
       if (step === undefined) return
       this.step = step
 
+      if (this.step === 'Invite User') {
+        this.disabled = true
+      }
+
       this.indicator(step)
     },
     mainInfoChange(mainInfo) {
@@ -125,6 +167,9 @@ export default {
     },
     availableDocumentsCustomFieldsChange(availableDocumentsCustomFields) {
       this.inviteUser.availableLocations = availableDocumentsCustomFields
+    },
+    rolesChange(roles) {
+      this.inviteUser.roles = roles
     }
   }
 }

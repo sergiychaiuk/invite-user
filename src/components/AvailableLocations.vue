@@ -1,11 +1,12 @@
 <template>
   <div>
-    <Accordion :precoroSelected="precoroSelected">
+    <Accordion :precoro="precoroSelected" precoroDevelopment="5 selected" procurement="3 selected">
       <template #precoro>
         <div class="available-locations">
           <div class="invite-user__input mb-5">
             <div class="invite-user__label">Main Location <span class="red--text">*</span></div>
             <v-select
+              :disabled="disabled"
               v-model="al.mainLocation"
               class="accordion__input"
               :items="mainLocations"
@@ -23,6 +24,7 @@
 
           <div class="d-flex">
             <v-checkbox
+              :disabled="disabled"
               v-model="selectAll"
               class="checkbox mb-4"
               label="Select All Locations"
@@ -42,6 +44,7 @@
             >
               <div class="d-flex">
                 <v-checkbox
+                  :disabled="disabled"
                   v-model="al.availableLocations"
                   class="checkbox"
                   :label="location"
@@ -73,7 +76,7 @@ export default {
     Accordion
   },
 
-  props: ['availableLocations'],
+  props: ['availableLocations', 'disabled'],
   data() {
     return {
       al: {
@@ -102,7 +105,9 @@ export default {
       return this.al.availableLocations.length > 0 && !this.allLocations()
     },
     precoroSelected() {
-      return this.al.availableLocations.length || 'Not'
+      return this.al.availableLocations.length
+        ? `${this.al.availableLocations.length} selected`
+        : 'Not selected'
     }
   },
   methods: {

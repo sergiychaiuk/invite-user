@@ -4,6 +4,7 @@
       <div class="invite-user__input pr-5">
         <div class="invite-user__label">First Name</div>
         <v-text-field
+          :disabled="disabled"
           v-model="mi.firstName"
           dense
           outlined
@@ -18,6 +19,7 @@
       <div class="invite-user__input">
         <div class="invite-user__label">Last Name</div>
         <v-text-field
+          :disabled="disabled"
           v-model="mi.lastName"
           dense
           outlined
@@ -34,6 +36,7 @@
       <div class="invite-user__input pr-5">
         <div class="invite-user__label">Email Address</div>
         <v-text-field
+          :disabled="disabled"
           v-model="mi.emailAddress"
           dense
           outlined
@@ -48,6 +51,7 @@
       <div class="invite-user__input">
         <div class="invite-user__label">Phone Number</div>
         <v-text-field
+          :disabled="disabled"
           v-model="mi.phoneNumber"
           dense
           outlined
@@ -64,6 +68,7 @@
       <div class="invite-user__input pr-5">
         <div class="invite-user__label">Position</div>
         <v-text-field
+          :disabled="disabled"
           v-model="mi.position"
           dense
           outlined
@@ -78,6 +83,7 @@
       <div class="invite-user__input">
         <div class="invite-user__label">Available Companies</div>
         <v-select
+          :disabled="disabled"
           v-model="mi.availableCompanies"
           :items="availableCompanies"
           dense
@@ -115,6 +121,7 @@
       <div class="d-flex align-center" style="margin: 30px 0 0 3px">
         <div class="invite-user__switch pr-2">
           <v-switch
+            :disabled="disabled"
             v-model="mi.activeInAllCompanies"
             inset
             label="Active in all companies"
@@ -139,7 +146,7 @@
 <script>
 export default {
   name: 'MainInfo',
-  props: ['mainInfo'],
+  props: ['mainInfo', 'disabled'],
   data() {
     return {
       mi: {},

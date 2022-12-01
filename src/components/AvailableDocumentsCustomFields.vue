@@ -1,10 +1,11 @@
 <template>
   <div>
-    <Accordion :precoroSelected="precoroSelected">
+    <Accordion :precoro="precoroSelected" precoroDevelopment="5 selected" procurement="3 selected">
       <template #precoro>
         <div class="available-document-custom-fields">
           <div class="d-flex">
             <v-checkbox
+              :disabled="disabled"
               v-model="selectAll"
               class="checkbox mb-6"
               label="Select All Document Custom Fields"
@@ -23,6 +24,7 @@
               <div class="available-document-custom-fields__subtitle">Classes</div>
 
               <v-treeview
+                :disabled="disabled"
                 class="treeview"
                 item-key="name"
                 v-model="adcf.classes"
@@ -40,6 +42,7 @@
               <div class="available-document-custom-fields__subtitle">Departments</div>
 
               <v-treeview
+                :disabled="disabled"
                 class="treeview"
                 item-key="name"
                 v-model="adcf.departments"
@@ -57,6 +60,7 @@
               <div class="available-document-custom-fields__subtitle">DCF 3</div>
 
               <v-treeview
+                :disabled="disabled"
                 class="treeview"
                 item-key="name"
                 v-model="adcf.dcf3"
@@ -91,7 +95,7 @@ export default {
     Accordion
   },
 
-  props: ['availableDocumentsCustomFields'],
+  props: ['availableDocumentsCustomFields', 'disabled'],
   data() {
     return {
       adcf: {
@@ -202,11 +206,12 @@ export default {
     },
 
     precoroSelected() {
-      return (
-        this.adcf.classes.length + this.adcf.departments.length + this.adcf.dcf3.length || 'Not'
-      )
+      return this.adcf.classes.length || this.adcf.departments.length || this.adcf.dcf3.length
+        ? `${
+            this.adcf.classes.length + this.adcf.departments.length + this.adcf.dcf3.length
+          } selected`
+        : 'Not selected'
     },
-
     _classes() {
       const replaceChildren = (obj, parent) => {
         const clone = Object.assign({}, obj)

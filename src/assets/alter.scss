@@ -1,0 +1,27 @@
+.alter {
+  display: flex;
+  align-items: center;
+
+  padding: 0.625rem 0.75rem 0.625rem 0.875rem;
+
+  background: rgba(244, 244, 255, 0.5);
+  border-radius: 0.5rem;
+
+  &__icon {
+    margin-right: 0.625rem;
+
+    img {
+      display: block;
+      opacity: 0.5;
+    }
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.125rem;
+    letter-spacing: 0;
+
+    color: rgba(29, 36, 82, 0.5);
+  }
+}
