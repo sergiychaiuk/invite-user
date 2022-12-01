@@ -1,5 +1,7 @@
 # Invite User
 
+"Invite User" is a form with step-by-step data entry. At the last step, after pressing the "Invite User" button, all fields become "disabled" and a block with the necessary information is displayed. The end.
+
 ### Built With
 
 [![Vue][Vue.js]][Vue-url]
